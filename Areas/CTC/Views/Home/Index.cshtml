@@ -2,32 +2,139 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
-
 <div class="row">
     <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+        <h2>
+            Welcome to the County Town Challenge (CTC)</h2>
+            <p class="lead">What is the CTC?</p>
+            <p>
+                Well, to be honest, the CTC is a bit of a bonkers idea that I had one night.<br /><sub>(Surprisingly, I hadn't been consuming alcohol at the time)</sub>
+            </p>
+            <p>
+                Having previously completed the classic C2C route and a Devon North to South trip (well, almost) as well as several runnings of the now infamous <a href="http://z6.invisionfree.com/Sussex_Muddyarse/index.php?showtopic=3964" target="_blank">&quot;Cutty to Butty&quot;&trade;</a>,
+                I have, recently, been spending an unhealthy amount of time looking at maps, in order to plan my next (reasonably) long bike ride.
+            </p>
+            <p>For some reason, I noticed that three of the towns on the map in front of me were towns whose names can be followed by "Shire" to form the name of a county. Then I started to wonder just how many of these (English) counties I had visited - it turned out to be all but one of them</p>
+            <p>Things progressed from there and I started to wonder about the county towns themselves, and the count dwindled somewhat (22 of the 47 have eluded me so far - not that I've been trying, of course) so the idea of the CTC was born</p>
+            <p>In a nutshell, the aim of taking part in the CTC challenge is to vist every English county town, by bicycle</p>
+            <p><span class="lead">The rules</span><br/>
+            <sub>(Not in a <a href="http://www.velominati.com/the-rules/" target="_blank">Velominati</a> way, I hasten to add)</sub></p>
+            <p>
+                <ul>
+                    <li>This is not a race</li>
+                    <li>It doesn't have to be done all in one go</li>
+                    <li>You can take as long as you like , and do as many towns as you like in a single day</li>
+                    <li>You can travel to your start point and from your end point by train, but try not to start or end at a county town (or you haven't really ridden there, have you?)</li>
+                    <li>You don't have to log the ride (on Strava or Garmin Connect etc), but it might be a good source of reference for others</li>
+                    <li>The are no official routes, so you can go by roads, cycle paths or bridleways, as is appropriate for your bike/mood/ability at the time</li>
+                </ul>
+            </p>
+
+</div>
+
+    <div class="col-md-8">
+        <div id="map-canvas"></div>
     </div>
 </div>
 
-<h1>CTC</h1>
+@section styles{
+<style>
+    #map-canvas {
+        height: 800px;
+        margin: 0px;
+        padding: 0px;
+    }
+</style>
+}
+@section scripts{
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script>
+        // The following example creates complex markers to indicate beaches near
+        // Sydney, NSW, Australia. Note that the anchor is set to
+        // (0,32) to correspond to the base of the flagpole.
+
+        function initialize() {
+            var mapOptions = {
+                zoom: 7,
+                center: new google.maps.LatLng(53, -1.5)
+            }
+            var map = new google.maps.Map(document.getElementById('map-canvas'),
+                                          mapOptions);
+
+            setMarkers(map, beaches);
+        }
+
+        /**
+         * Data for the markers consisting of a name, a LatLng and a zIndex for
+         * the order in which these markers should display on top of each
+         * other.
+         */
+        var beaches = [
+            ["Chichester", 50.832086, -0.781243, 1],
+            ["Newport", 50.700467, -1.290579, 1],
+            ["Winchester", 51.067097, -1.319593, 1],
+            ["Dorchester", 50.709254, -2.437557, 1],
+            ["Exeter", 50.729389, -3.543011, 1],
+            ["Truro", 50.263764, -5.064836, 1],
+            ["Taunton", 51.023677, -3.103583, 1],
+            ["Trowbridge", 51.319753, -2.214404, 1],
+            ["Bristol", 51.449146, -2.581558, 1],
+            ["Gloucester", 51.865356, -2.238828, 1],
+            ["Reading", 51.457994, -0.971695, 1],
+            ["Guildford", 51.236896, -0.580124, 1],
+            ["Maidstone", 51.277623, 0.521304, 1],
+            ["Lewes", 50.870620, 0.011106, 1],
+            ["London", 51.505100, -0.086869, 1],
+            ["Chelmsford", 51.736216, 0.468596, 1],
+            ["Hertford", 51.799000, -0.091610, 1],
+            ["Aylesbury", 51.814039, -0.815302, 1],
+            ["Oxford", 51.753461, -1.269647, 1],
+            ["Hereford", 52.061206, -2.708964, 1],
+            ["Worcester", 52.194532, -2.209502, 1],
+            ["Warwick", 52.286423, -1.582049, 1],
+            ["Northampton", 52.237258, -0.906592, 1],
+            ["Bedford", 52.136529, -0.479333, 1],
+            ["Cambridge", 52.194320, 0.136942, 1],
+            ["Ipswich", 52.050622, 1.145028, 1],
+            ["Norwich", 52.627165, 1.306535, 1],
+            ["Oakham", 52.671843, -0.734130, 1],
+            ["Leicester", 52.630736, -1.125003, 1],
+            ["Birmingham", 52.477390, -1.896747, 1],
+            ["Shrewsbury", 52.711651, -2.749810, 1],
+            ["Stafford", 52.803812, -2.121588, 1],
+            ["Derby", 52.916147, -1.463578, 1],
+            ["Nottingham", 52.947054, -1.147241, 1],
+            ["Lincoln", 53.226626, -0.539618, 1],
+            ["Sheffield", 53.378441, -1.463556, 1],
+            ["Chester", 53.196432, -2.880418, 1],
+            ["Liverpool", 53.406958, -2.978603, 1],
+            ["Manchester", 53.476385, -2.230383, 1],
+            ["Wakefield", 53.682698, -1.504520, 1],
+            ["Beverley", 53.842356, -0.423400, 1],
+            ["Northallerton", 54.332782, -1.440675, 1],
+            ["Lancaster", 54.048647, -2.808401, 1],
+            ["Carlisle", 54.890932, -2.932214, 1],
+            ["Morpeth", 55.162101, -1.682823, 1],
+            ["Newcastle", 54.969155, -1.617347, 1],
+            ["Durham", 54.779039, -1.581513, 1]
+        ];
+
+        function setMarkers(map, locations) {
+            // Add markers to the map
+
+            for (var i = 0; i < locations.length; i++) {
+                var beach = locations[i];
+                var myLatLng = new google.maps.LatLng(beach[1], beach[2]);
+                var marker = new google.maps.Marker({
+                    position: myLatLng,
+                    map: map,
+                    title: beach[0],
+                    zIndex: beach[3]
+                });
+            }
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+}
