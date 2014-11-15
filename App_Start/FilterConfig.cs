@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace bikeitorhikeit
+namespace belugabrain.bikeitorhikeit
 {
     public class FilterConfig
     {

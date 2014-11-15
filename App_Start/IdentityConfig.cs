@@ -10,9 +10,9 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using bikeitorhikeit.Models;
+using belugabrain.bikeitorhikeit.Models;
 
-namespace bikeitorhikeit
+namespace belugabrain.bikeitorhikeit
 {
     public class EmailService : IIdentityMessageService
     {

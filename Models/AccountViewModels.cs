@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace bikeitorhikeit.Models
+namespace belugabrain.bikeitorhikeit.Models
 {
     public class ExternalLoginConfirmationViewModel
     {

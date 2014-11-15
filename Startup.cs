@@ -1,8 +1,8 @@
 ﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(bikeitorhikeit.Startup))]
-namespace bikeitorhikeit
+[assembly: OwinStartupAttribute(typeof(belugabrain.bikeitorhikeit.Startup))]
+namespace belugabrain.bikeitorhikeit
 {
     public partial class Startup
     {

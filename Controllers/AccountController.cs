@@ -8,9 +8,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using bikeitorhikeit.Models;
+using belugabrain.bikeitorhikeit.Models;
 
-namespace bikeitorhikeit.Controllers
+namespace belugabrain.bikeitorhikeit.Controllers
 {
     [Authorize]
     public class AccountController : Controller

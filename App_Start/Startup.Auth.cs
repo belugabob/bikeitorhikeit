@@ -5,9 +5,9 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
-using bikeitorhikeit.Models;
+using belugabrain.bikeitorhikeit.Models;
 
-namespace bikeitorhikeit
+namespace belugabrain.bikeitorhikeit
 {
     public partial class Startup
     {
