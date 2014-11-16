@@ -95,7 +95,8 @@
             map.mapTypes.set("OCM", ocmMapType);
             map.mapTypes.set("OSM", osmMapType);
 
-            setMarkers(map, beaches);
+            setMarkers(map, towns);
+            setTownLinks(map, towns, links);
         }
 
         /**
@@ -103,7 +104,7 @@
          * the order in which these markers should display on top of each
          * other.
          */
-        var beaches = [
+        var towns = [
             ["Chichester", 50.832086, -0.781243, 1],
             ["Newport", 50.700467, -1.290579, 1],
             ["Winchester", 51.067097, -1.319593, 1],
@@ -153,18 +154,44 @@
             ["Durham", 54.779039, -1.581513, 1]
         ];
 
+        var links = [
+            [1, [2, 3, 12, 14]],
+            [2, [3, 4]],
+            [3, [4, 8, 11, 12]]
+        ];
+
         function setMarkers(map, locations) {
             // Add markers to the map
 
             for (var i = 0; i < locations.length; i++) {
-                var beach = locations[i];
-                var myLatLng = new google.maps.LatLng(beach[1], beach[2]);
+                var location = locations[i];
+                var myLatLng = new google.maps.LatLng(location[1], location[2]);
                 var marker = new google.maps.Marker({
                     position: myLatLng,
                     map: map,
-                    title: beach[0],
-                    zIndex: beach[3]
+                    title: location[0],
+                    zIndex: location[3]
                 });
+            }
+        }
+
+        function setTownLinks(map, locations, links) {
+            var polyOptions = {
+                strokeColor: '#FF0000',
+                strokeOpacity: 0.5,
+                strokeWeight: 3
+            };
+            for (var i = 0; i < links.length; i++) {
+                var link = links[i];
+                var linkStart = link[0] - 1;
+                for (var n = 0; n < link[1].length; n++) {
+                    var linkEnd = link[1][n] - 1;
+                    poly = new google.maps.Polyline(polyOptions);
+                    poly.setMap(map);
+                    var path = poly.getPath();
+                    path.push(new google.maps.LatLng(locations[linkStart][1], locations[linkStart][2]));
+                    path.push(new google.maps.LatLng(locations[linkEnd][1], locations[linkEnd][2]));
+                }
             }
         }
 
