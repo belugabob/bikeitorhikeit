@@ -34,6 +34,9 @@
 
     <div class="col-md-8">
         <div id="map-canvas"></div>
+        <div id="panel">
+            Network length - <span id="networkDistance"></span> km, as the crow flies
+        </div>
     </div>
 </div>
 
@@ -48,7 +51,7 @@
 }
 
 @section scripts{
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry"></script>
     <script>
         // The following example creates complex markers to indicate beaches near
         // Sydney, NSW, Australia. Note that the anchor is set to
@@ -75,7 +78,7 @@
             var map = new google.maps.Map(
                 document.getElementById('map-canvas'),
                 {
-                    center: new google.maps.LatLng(53, -1.5),
+                    center: new google.maps.LatLng(52.8, -1.8),
                     zoom: 7,
                     mapTypeControlOptions: {
                         mapTypeIds: mapTypeIds,
@@ -212,8 +215,13 @@
             var polyOptions = {
                 strokeColor: '#FF0000',
                 strokeOpacity: 0.5,
-                strokeWeight: 3
+                strokeWeight: 3,
+                geodesic: true
             };
+            var networkLength = 0;
+            var startPos;
+            var endPos;
+
             for (var i = 0; i < links.length; i++) {
                 var link = links[i];
                 var linkStart = link[0] - 1;
@@ -221,11 +229,15 @@
                     var linkEnd = link[1][n] - 1;
                     poly = new google.maps.Polyline(polyOptions);
                     poly.setMap(map);
+                    startPos = new google.maps.LatLng(locations[linkStart][1], locations[linkStart][2]);
+                    endPos = new google.maps.LatLng(locations[linkEnd][1], locations[linkEnd][2]);
                     var path = poly.getPath();
-                    path.push(new google.maps.LatLng(locations[linkStart][1], locations[linkStart][2]));
-                    path.push(new google.maps.LatLng(locations[linkEnd][1], locations[linkEnd][2]));
+                    path.push(startPos);
+                    path.push(endPos);
+                    networkLength += google.maps.geometry.spherical.computeDistanceBetween(startPos, endPos);
                 }
             }
+            document.getElementById('networkDistance').innerText = (networkLength/1000) | 0;
         }
 
         google.maps.event.addDomListener(window, 'load', initialize);
