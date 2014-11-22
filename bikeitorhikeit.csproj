@@ -15,7 +15,7 @@
     <AssemblyName>bikeitorhikeit</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -183,12 +183,17 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\aspnet-bikeitorhikeit-20141115050906.mdf" />
+    <Content Include="App_Data\aspnet-bikeitorhikeit-20141115050906_log.ldf">
+      <DependentUpon>aspnet-bikeitorhikeit-20141115050906.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Index.html" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
     <Content Include="Scripts\angular-aria.js" />
@@ -972,6 +977,45 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="UC\css\bikeitorhikeit\carparks.css" />
+    <Content Include="UC\css\bikeitorhikeit\default.css" />
+    <Content Include="UC\css\complexspiral\shell-bg.css" />
+    <Content Include="UC\images\bikeitorhikeit\backpack\backpack_bg.jpg" />
+    <Content Include="UC\images\bikeitorhikeit\backpack\backpack_blue.jpg" />
+    <Content Include="UC\images\bikeitorhikeit\backpack\backpack_white.jpg" />
+    <Content Include="UC\images\bikeitorhikeit\banner.jpg" />
+    <Content Include="UC\images\bikeitorhikeit\downs\chalkpath-bg.jpg" />
+    <Content Include="UC\images\bikeitorhikeit\downs\panorama-bg.jpg" />
+    <Content Include="UC\images\bikeitorhikeit\downs\panorama-blue.jpg" />
+    <Content Include="UC\images\bikeitorhikeit\downs\panorama-white.jpg" />
+    <Content Include="UC\images\bikeitorhikeit\preview_banner.jpg" />
+    <Content Include="UC\images\bikesign\bikesign-blue.png" />
+    <Content Include="UC\images\bikesign\bikesign-white.png" />
+    <Content Include="UC\images\bikesign\bikesign.png" />
+    <Content Include="UC\images\browsers\chrome-205_noshadow.png" />
+    <Content Include="UC\images\browsers\chrome-logo.jpg" />
+    <Content Include="UC\images\browsers\chrome-logo.png" />
+    <Content Include="UC\images\browsers\firefox-logo.jpg" />
+    <Content Include="UC\images\browsers\firefox-logo_small.png" />
+    <Content Include="UC\images\browsers\firefox-wordmark-horizontal_small.png" />
+    <Content Include="UC\images\browsers\firefox-wordmark-vertical_small.png" />
+    <Content Include="UC\images\browsers\ie-logo.jpg" />
+    <Content Include="UC\images\browsers\opera-logo.jpg" />
+    <Content Include="UC\images\browsers\opera.jpg" />
+    <Content Include="UC\images\browsers\performance_firefox20070611.gif" />
+    <Content Include="UC\images\browsers\performance_ie20070611.gif" />
+    <Content Include="UC\images\browsers\performance_opera20070611.gif" />
+    <Content Include="UC\images\browsers\performance_safari20070611.gif" />
+    <Content Include="UC\images\browsers\safari-logo.jpg" />
+    <Content Include="UC\images\browsers\safari.jpg" />
+    <Content Include="UC\images\complexspiral\shell-bg.jpg" />
+    <Content Include="UC\images\complexspiral\shell-blue.jpg" />
+    <Content Include="UC\images\complexspiral\shell-fade.jpg" />
+    <Content Include="UC\images\complexspiral\shell-wash.jpg" />
+    <Content Include="UC\images\egypt\sphinx-bg.jpg" />
+    <Content Include="UC\images\egypt\sphinx-blue.jpg" />
+    <Content Include="UC\images\egypt\sphinx-white.jpg" />
+    <Content Include="UC\images\icons\silk\folder.png" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1008,9 +1052,9 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Scripts\version.json" />
+    <Content Include="UC\images\browsers\Thumbs.db" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Areas\CTC\Models\" />
     <Folder Include="Areas\CTC\Views\Shared\" />
   </ItemGroup>
@@ -1039,7 +1083,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>49726</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:49737/</IISUrl>
+          <IISUrl>http://localhost/bikeitorhikeit</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

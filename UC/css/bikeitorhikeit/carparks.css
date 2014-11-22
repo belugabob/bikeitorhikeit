@@ -1,0 +1,105 @@
+#carparks{
+}
+
+#content{
+    margin-top: 4px;
+    margin-bottom: 4px;
+    color: black;
+    background: white url( ../../images/bikeitorhikeit/backpack/backpack_white.jpg ) no-repeat fixed 0 0;
+
+    padding: 10px;
+    border: solid 1px black;
+
+    width: 720px;
+}
+
+.js #content{
+    width: auto;
+}
+
+#maptable{
+    width: 100%;
+}
+
+.js #staticmaptable{
+    display: none;
+}
+
+#map{
+    min-height: 400px;
+    border: solid 1px black;
+}
+
+#directions{
+    width: 150px;
+}
+
+table#maptable th, table#staticmaptable th{
+    background-color: #EEEEEE;
+    color: black;
+    font-weight: normal;
+}
+
+table#maptable td, table#staticmaptable td{
+    vertical-align: top;
+}
+
+div.carparkitem{
+    border: solid 1px black;
+    background-color: #f0e68c; /*khaki*/
+    font-size: smaller;
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
+div#carparks div.selected{
+    background-color: orange;
+}
+
+div#carparks div.hover{
+    background-color: #b8860b; /*darkgoldenrod*/
+}
+
+#staticmap{
+    border: solid 1px black;
+    width: 512px;
+    height: 512px;
+}
+
+#staticmap table{
+    width: 512px;
+    height: 512px;
+    border: none;
+}
+
+#staticmap table th{
+    text-align: center;
+    vertical-align: middle;
+}
+
+#dynamicprompt{
+    float: right;
+    border: solid 1px black;
+    width: 150px;
+    font-size: .3em;
+}
+
+#directionsprompt2{
+    border: solid 1px black;
+    width: 150px;
+    padding: 4px;
+    margin-top: 4px;
+    background-color: #ffffff;
+}
+
+.infowindow{
+    font-size: smaller;
+}
+.infoname{
+    font-weight: bold;
+}
+
+.label{
+    font-style: italic;
+    width: 150px;
+}

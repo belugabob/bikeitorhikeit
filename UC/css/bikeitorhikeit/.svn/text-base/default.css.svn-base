@@ -1,0 +1,77 @@
+body {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    background: #468 url( ../../images/bikeitorhikeit/backpack/backpack_bg.jpg ) no-repeat fixed 0 0;
+
+}
+
+.hidden {
+    display: none;
+}
+
+.floatRight{
+    float: right;
+}
+
+#mainlayout {
+    /*position: absolute;*/
+    /*top: 26px;*/
+    /*left: 26px;*/
+    margin: 26px;
+    color: #EED;
+    font: 13px Verdana, sans-serif;
+}
+
+#maincontent {
+    padding: 0;
+    margin: 0;
+    color: #EED;
+    /*background-color: black;*/
+    /*font: 13px Verdana, sans-serif;*/
+}
+
+#banner {
+    /*width: 872px;*/
+}
+
+#banner tr {
+    vertical-align: top;
+}
+
+
+div#contentHeading{
+    margin-top: 4px;
+    margin-bottom: 4px;
+    background: #384D6E url( ../../images/bikeitorhikeit/backpack/backpack_blue.jpg ) no-repeat fixed 0 0;
+    /*background: #468;*/
+    padding: 10px;
+    border: solid 1px black;
+}
+
+div#content {
+    margin-top: 4px;
+    margin-bottom: 4px;
+    color: black;
+    background: white url( ../../images/bikeitorhikeit/backpack/backpack_white.jpg ) no-repeat fixed 0 0;
+
+    padding: 10px;
+    border: solid 1px black;
+}
+
+ul.location li {
+    list-style-type: none;
+    padding-left: 16px;
+    margin-left: -40px;
+    background: url( ../../images/icons/silk/folder.png ) no-repeat 0 0;
+
+}
+
+#maptable{
+    width: 100%;
+}
+#map{
+    /*width: 100%;*/
+    min-height: 400px;
+    border: solid 1px black;
+}
