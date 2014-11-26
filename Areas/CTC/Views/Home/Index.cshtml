@@ -31,7 +31,7 @@
                         the towns on the map in front of me were towns whose names can be followed by "Shire" to form the name of a county. 
                         Then I started to wonder just how many of these (English) counties I had visited - it turned out to be all but one of them</p>
                         <p>Things progressed from there and I started to wonder about the county towns themselves, and the count dwindled somewhat (22 of the 47 have eluded me so far - not that I've been trying, of course) so the idea of the CTC was born</p>
-                        <p>In a nutshell, the aim of taking part in the CTC challenge is to vist every English county town, by bicycle</p>
+                        <p>In a nutshell, the aim of taking part in the CTC challenge is to visit every English county town, by bicycle</p>
                     </div>
                 </div>
             </tab>
@@ -185,59 +185,87 @@
                 google.maps.event.trigger(map, 'resize');
             }
 
+            var countries = [
+                [1, "England"],
+                [2, "Wales"],
+                [3, "Scotland"],
+                [4, "Northern Ireland"]
+            ]
             /**
              * Data for the markers consisting of a name, a LatLng and a zIndex for
              * the order in which these markers should display on top of each
              * other.
              */
             var towns = [
-                ["Chichester", 50.832086, -0.781243, 1],
-                ["Newport", 50.700467, -1.290579, 1],
-                ["Winchester", 51.067097, -1.319593, 1],
-                ["Dorchester", 50.709254, -2.437557, 1],
-                ["Exeter", 50.729389, -3.543011, 1],
-                ["Truro", 50.263764, -5.064836, 1],
-                ["Taunton", 51.023677, -3.103583, 1],
-                ["Trowbridge", 51.319753, -2.214404, 1],
-                ["Bristol", 51.449146, -2.581558, 1],
-                ["Gloucester", 51.865356, -2.238828, 1],
-                ["Reading", 51.457994, -0.971695, 1],
-                ["Guildford", 51.236896, -0.580124, 1],
-                ["Maidstone", 51.277623, 0.521304, 1],
-                ["Lewes", 50.870620, 0.011106, 1],
-                ["London", 51.505100, -0.086869, 1],
-                ["Chelmsford", 51.736216, 0.468596, 1],
-                ["Hertford", 51.799000, -0.091610, 1],
-                ["Aylesbury", 51.814039, -0.815302, 1],
-                ["Oxford", 51.753461, -1.269647, 1],
-                ["Hereford", 52.061206, -2.708964, 1],
-                ["Worcester", 52.194532, -2.209502, 1],
-                ["Warwick", 52.286423, -1.582049, 1],
-                ["Northampton", 52.237258, -0.906592, 1],
-                ["Bedford", 52.136529, -0.479333, 1],
-                ["Cambridge", 52.194320, 0.136942, 1],
-                ["Ipswich", 52.050622, 1.145028, 1],
-                ["Norwich", 52.627165, 1.306535, 1],
-                ["Oakham", 52.671843, -0.734130, 1],
-                ["Leicester", 52.630736, -1.125003, 1],
-                ["Birmingham", 52.477390, -1.896747, 1],
-                ["Shrewsbury", 52.711651, -2.749810, 1],
-                ["Stafford", 52.803812, -2.121588, 1],
-                ["Derby", 52.916147, -1.463578, 1],
-                ["Nottingham", 52.947054, -1.147241, 1],
-                ["Lincoln", 53.226626, -0.539618, 1],
-                ["Sheffield", 53.378441, -1.463556, 1],
-                ["Chester", 53.196432, -2.880418, 1],
-                ["Liverpool", 53.406958, -2.978603, 1],
-                ["Manchester", 53.476385, -2.230383, 1],
-                ["Wakefield", 53.682698, -1.504520, 1],
-                ["Beverley", 53.842356, -0.423400, 1],
-                ["Northallerton", 54.332782, -1.440675, 1],
-                ["Lancaster", 54.048647, -2.808401, 1],
-                ["Carlisle", 54.890932, -2.932214, 1],
-                ["Morpeth", 55.162101, -1.682823, 1],
-                ["Newcastle", 54.969155, -1.617347, 1],
-                ["Durham", 54.779039, -1.581513, 1]
+                ["Chichester", 50.832086, -0.781243, 1, 1],
+                ["Newport", 50.700467, -1.290579, 1, 1],
+                ["Winchester", 51.067097, -1.319593, 1, 1],
+                ["Dorchester", 50.709254, -2.437557, 1, 1],
+                ["Exeter", 50.729389, -3.543011, 1, 1],
+                ["Truro", 50.263764, -5.064836, 1, 1],
+                ["Taunton", 51.023677, -3.103583, 1, 1],
+                ["Trowbridge", 51.319753, -2.214404, 1, 1],
+                ["Bristol", 51.449146, -2.581558, 1, 1],
+                ["Gloucester", 51.865356, -2.238828, 1, 1],
+                ["Reading", 51.457994, -0.971695, 1, 1],
+                ["Guildford", 51.236896, -0.580124, 1, 1],
+                ["Maidstone", 51.277623, 0.521304, 1, 1],
+                ["Lewes", 50.870620, 0.011106, 1, 1],
+                ["London", 51.505100, -0.086869, 1, 1],
+                ["Chelmsford", 51.736216, 0.468596, 1, 1],
+                ["Hertford", 51.799000, -0.091610, 1, 1],
+                ["Aylesbury", 51.814039, -0.815302, 1, 1],
+                ["Oxford", 51.753461, -1.269647, 1, 1],
+                ["Hereford", 52.061206, -2.708964, 1, 1],
+                ["Worcester", 52.194532, -2.209502, 1, 1],
+                ["Warwick", 52.286423, -1.582049, 1, 1],
+                ["Northampton", 52.237258, -0.906592, 1, 1],
+                ["Bedford", 52.136529, -0.479333, 1, 1],
+                ["Cambridge", 52.194320, 0.136942, 1, 1],
+                ["Ipswich", 52.050622, 1.145028, 1, 1],
+                ["Norwich", 52.627165, 1.306535, 1, 1],
+                ["Oakham", 52.671843, -0.734130, 1, 1],
+                ["Leicester", 52.630736, -1.125003, 1, 1],
+                ["Birmingham", 52.477390, -1.896747, 1, 1],
+                ["Shrewsbury", 52.711651, -2.749810, 1, 1],
+                ["Stafford", 52.803812, -2.121588, 1, 1],
+                ["Derby", 52.916147, -1.463578, 1, 1],
+                ["Nottingham", 52.947054, -1.147241, 1, 1],
+                ["Lincoln", 53.226626, -0.539618, 1, 1],
+                ["Sheffield", 53.378441, -1.463556, 1, 1],
+                ["Chester", 53.196432, -2.880418, 1, 1],
+                ["Liverpool", 53.406958, -2.978603, 1, 1],
+                ["Manchester", 53.476385, -2.230383, 1, 1],
+                ["Wakefield", 53.682698, -1.504520, 1, 1],
+                ["Beverley", 53.842356, -0.423400, 1, 1],
+                ["Northallerton", 54.332782, -1.440675, 1, 1],
+                ["Lancaster", 54.048647, -2.808401, 1, 1],
+                ["Carlisle", 54.890932, -2.932214, 1, 1],
+                ["Morpeth", 55.162101, -1.682823, 1, 1],
+                ["Newcastle", 54.969155, -1.617347, 1, 1],
+                ["Durham", 54.779039, -1.581513, 1, 1],
+                ["Blaenau Gwent", 55, 0, 1, 2],
+                ["Bridgend", 55, 0, 1, 2],
+                ["Caerphilly", 55, 0, 1, 2],
+                ["Cardiff", 55, 0, 1, 2],
+                ["Carmarthenshire", 55, 0, 1, 2],
+                ["Ceredigion", 55, 0, 1, 2],
+                ["Conwy", 55, 0, 1, 2],
+                ["Denbighshire", 55, 0, 1, 2],
+                ["Flintshire", 53.167444, -3.143304, 1, 2],
+                ["Gwynedd", 55, 0, 1, 2],
+                ["Isle of Anglesey", 55, 0, 1, 2],
+                ["Merthyr Tydfil", 55, 0, 1, 2],
+                ["Monmouthshire", 55, 0, 1, 2],
+                ["Neath Port Talbot", 55, 0, 1, 2],
+                ["Newport", 55, 0, 1, 2],
+                ["Pembrokeshire", 55, 0, 1, 2],
+                ["Powys", 52.242081, -3.379012, 1, 2],
+                ["Rhondda Cynon Taf", 55, 0, 1, 2],
+                ["Swansea", 55, 0, 1, 2],
+                ["Torfaen", 55, 0, 1, 2],
+                ["Vale of Glamorgan", 55, 0, 1, 2],
+                ["Wrexham", 53.049887, -3.001323, 1, 2]
             ];
 
             var links = [
@@ -285,7 +313,10 @@
                 [43, [44, 47]],
                 [44, [45, 46, 47]],
                 [45, [46]],
-                [46, [47]]
+                [46, [47]],
+                [56, [69, 37, 38]],
+                [64, [20, 31, 69]],
+                [69, [31, 37]]
             ];
 
             function setMarkers(map, locations) {
@@ -304,12 +335,20 @@
             }
 
             function setTownLinks(map, locations, links) {
-                var polyOptions = {
+                var normalPolyOptions = {
                     strokeColor: '#FF0000',
                     strokeOpacity: 0.5,
                     strokeWeight: 3,
                     geodesic: true
                 };
+
+                var crossBorderPolyOptions = {
+                    strokeColor: '#000000',
+                    strokeOpacity: 0.5,
+                    strokeWeight: 3,
+                    geodesic: true
+                };
+
                 var networkLength = 0;
                 var startPos;
                 var endPos;
@@ -319,10 +358,16 @@
                     var linkStart = link[0] - 1;
                     for (var n = 0; n < link[1].length; n++) {
                         var linkEnd = link[1][n] - 1;
-                        poly = new google.maps.Polyline(polyOptions);
-                        poly.setMap(map);
                         startPos = new google.maps.LatLng(locations[linkStart][1], locations[linkStart][2]);
                         endPos = new google.maps.LatLng(locations[linkEnd][1], locations[linkEnd][2]);
+                        var polyOptions;
+                        if (locations[linkStart][4] == locations[linkEnd][4]) {
+                            polyOptions = normalPolyOptions;
+                        } else {
+                            polyOptions = crossBorderPolyOptions;
+                        }
+                        var poly = new google.maps.Polyline(polyOptions);
+                        poly.setMap(map);
                         var path = poly.getPath();
                         path.push(startPos);
                         path.push(endPos);
