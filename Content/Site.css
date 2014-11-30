@@ -22,3 +22,11 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.banner{
+    background-image: url(bioblogbanner.jpg);
+    background-position: top left;
+    background-repeat: no-repeat;
+    width: 1000px;
+    height: 288px;
+}
