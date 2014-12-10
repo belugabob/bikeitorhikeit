@@ -17,7 +17,7 @@ namespace belugabrain.bikeitorhikeit.Areas.CTC
             context.MapRoute(
                 "CTC_default",
                 "CTC/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional },
+                new { controller = "Home", action = "Index", id = UrlParameter.Optional },
                 new [] {"belugabrain.bikeitorhikeit.Areas.CTC.Controllers"}
             );
         }
