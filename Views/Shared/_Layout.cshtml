@@ -8,9 +8,8 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
-
 </head>
-<body>
+<body ng-app="belugabrain.ctc">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -23,12 +22,8 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-@*                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>*@
                     <li>@Html.ActionLink("CTC", "Index", "Home", new { area = "CTC" }, null)</li>
-                    @*<li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
                 </ul>
-@*                @Html.Partial("_LoginPartial")*@
             </div>
         </div>
     </div>
@@ -39,7 +34,32 @@
             <p>&copy; @DateTime.Now.Year - belugabrain</p>
         </footer>
     </div>
-
+    @{
+        var cookieConsent = Request.Cookies["cookieConsent"];
+        var cookieFooterVisibilityClass = (cookieConsent != null) ? "hidden" : "";
+    }
+    <div id="cookieFooter" ng-controller="CookiesCtrl" class="{{cookieConsentHidden ? '' : 'shown'}}">
+        <accordion close-others="oneAtATime">
+            <accordion-group heading="Cookie policy...">
+                <div id="cookieConsentDetails">
+                    <div id="cookieButtons">
+                        <button class="btn btn-default" ng-click="accept()" title="I accept your use of cookies">Accept cookies</button><br />
+                        <button class="btn btn-default" ng-click="reject()" title="I don't want you to use cookies, thanks">Reject cookies</button>
+                    </div>
+                    <div>
+                        <p>This site uses cookies to remember which part of the site you were looking at and which options you selected, so that when you return, things will be pretty much as you left them.</p>
+                        <p>
+                            For example, when looking at the maps for the County Town Challenge, cookies are used to remember the part of the map that you were looking at and the zoom level in force at the time.
+                            Without cookies to remember this, you will have to zoom and scroll every time you come back to the map.
+                        </p>
+                        <p>We totally understand if you don't like using cookies, so feel free to click on the 'reject' button.</p>
+                        <p>However, we hope you'll trust us to use this simple data capture to make your life a little bit easier, by clicking on the 'accept' button.</p>
+                        <p>Note: Clicking on 'accept' or 'reject' will result in the storage of a single cookie that causes this message to be hidden. <u>Only</u> clicking on 'accept' will cause any other cookies to be stored</p>
+                    </div>
+                </div>
+            </accordion-group>
+        </accordion>
+    </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

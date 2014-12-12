@@ -2,10 +2,18 @@
     ViewBag.Title = "Home Page";
 }
 
-<div id="ctcApp" ng-app="belugabrain.ctc">
+<div id="ctcApp">
     <div class="row"><br/></div>
     <div ng-controller="CtcTabsCtrl">
         <tabset>
+            <tab heading="Maps" select="initMap()">
+                <div class="mapPane">
+                    <div id="panel" class="mapStats">
+                        Network length - <span id="networkDistance"></span> km, as the crow flies
+                    </div>
+                    <div id="map-canvas"></div>
+                </div>
+            </tab>
             <tab heading="What's it all about?">
                 <div class="row">
                     <div class="col-md-12">
@@ -46,14 +54,6 @@
                     </div>
                 </div>
             </tab>
-            <tab heading="Maps" select="initMap()">
-                <div class="mapPane">
-                    <div id="map-canvas"></div>
-                    <div id="panel">
-                        Network length - <span id="networkDistance"></span> km, as the crow flies
-                    </div>
-                </div>
-            </tab>
             <tab heading="What's new?">
                 <p class="lead">Nov 21st 2014</p>
                 <p>Everything, really, as I've only just created this site.</p>
@@ -67,7 +67,7 @@
                 <p>Things that I envisage adding to this site - in no particular order...</p>
                 <ul>
                     <li>Extend the network to <s>Wales</s>, Scotland and Northern Ireland (Maybe Ireland too)</li>
-                    <li>Allow experimaetal routes to be built up, to aid with juding distances for partial attempts</li>
+                    <li>Allow experimental routes to be built up, to aid with juding distances for partial attempts</li>
                     <li>Storing information about accommodation and eating places</li>
                     <li>Add a <s>blog/</s>forum, so that your adventures can be shared with others</li>
                 </ul>
@@ -96,6 +96,12 @@
     }
     .nav-tabs {
         margin-bottom: 0;
+    }
+    .mapStats {
+        border: solid 1px #ddd;
+        float: right;
+        margin-left: 10px;
+        width: 400px;
     }
 
     /*div.tab-content > .active {

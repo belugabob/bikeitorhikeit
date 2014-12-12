@@ -30,3 +30,29 @@ textarea {
     width: 1000px;
     height: 288px;
 }
+
+#cookieFooter {
+    position: fixed;
+    bottom: 0px;
+    background-color: sandybrown;
+    border: solid 1px black;
+    width: 100%;
+    padding: 4px;
+    visibility:collapse;
+}
+
+#cookieFooter.shown {
+    visibility: visible;
+}
+
+#cookieButtons{
+    float: right;
+    padding: 4px;
+}
+
+#cookieConsentExpander{
+    padding: 2px;
+}
+
+#cookieConsentDetails{
+}

@@ -1,5 +1,4 @@
-﻿angular.module('belugabrain.ctc', ['ui.bootstrap']);
-angular.module('belugabrain.ctc').controller('CtcTabsCtrl', ['$scope', '$http', function ($scope, $window) {
+﻿angular.module('belugabrain.ctc').controller('CtcTabsCtrl', ['$scope', '$http', function ($scope, $window) {
     $scope.tabs = [
       { title: 'Dynamic Title 1', content: 'Dynamic content 1' },
       { title: 'Dynamic Title 2', content: 'Dynamic content 2', disabled: true }
@@ -35,11 +34,24 @@ angular.module('belugabrain.ctc').controller('CtcTabsCtrl', ['$scope', '$http', 
 
         mapTypeIds.push("OCM");
 
+        var mapLatitude = getCookie("mapLatitude");
+        if (mapLatitude == "") {
+            mapLatitude = 54.8;
+        }
+        var mapLongitude = getCookie("mapLongitude");
+        if (mapLongitude == "") {
+            mapLongitude = -1.8;
+        }
+        var mapZoom = getCookie("mapZoom");
+        if (mapZoom == "") {
+            mapZoom = 6;
+        }
+
         $scope.map = new google.maps.Map(
             document.getElementById('map-canvas'),
             {
-                center: new google.maps.LatLng(54.8, -1.8),
-                zoom: 6,
+                center: new google.maps.LatLng(mapLatitude, mapLongitude),
+                zoom: parseInt(mapZoom),
                 mapTypeControlOptions: {
                     mapTypeIds: mapTypeIds,
                     position: google.maps.ControlPosition.TOP_RIGHT
@@ -55,6 +67,33 @@ angular.module('belugabrain.ctc').controller('CtcTabsCtrl', ['$scope', '$http', 
         setTownLinks(map, towns, links);
 
         google.maps.event.trigger(map, 'resize');
+        google.maps.event.addListener(
+            map,
+            'zoom_changed',
+            function () {
+                document.cookie = "mapZoom = " + map.getZoom();
+            }
+        );
+        google.maps.event.addListener(
+            map,
+            'center_changed',
+            function () {
+                var mapCenter = map.getCenter();
+                document.cookie = "mapLatitude = " + mapCenter.lat();
+                document.cookie = "mapLongitude = " + mapCenter.lng();
+            }
+        );
+    }
+
+    function getCookie(cname) {
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') c = c.substring(1);
+            if (c.indexOf(name) != -1) return c.substring(name.length, c.length);
+        }
+        return "";
     }
 
     var countries = [

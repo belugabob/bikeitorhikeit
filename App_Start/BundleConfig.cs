@@ -28,6 +28,7 @@ namespace belugabrain.bikeitorhikeit
                       "~/Scripts/angular-ui/ui-bootstrap-tpls.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/angularControllers").Include(
+                      "~/Scripts/angularControllers/cookies.js",
                       "~/Scripts/angularControllers/ctcTabs.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
