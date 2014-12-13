@@ -1,4 +1,5 @@
-﻿angular.module('belugabrain.ctc').controller('CtcTabsCtrl', ['$scope', '$http', function ($scope, $window) {
+﻿angular.module('belugabrain.ctc').controller('CtcTabsCtrl', ['$scope', '$http', 'CookieService', function ($scope, $window, CookieService) {
+    $scope.CookieService = CookieService;
     $scope.tabs = [
       { title: 'Dynamic Title 1', content: 'Dynamic content 1' },
       { title: 'Dynamic Title 2', content: 'Dynamic content 2', disabled: true }
@@ -34,15 +35,15 @@
 
         mapTypeIds.push("OCM");
 
-        var mapLatitude = getCookie("mapLatitude");
+        var mapLatitude = $scope.CookieService.getCookie("mapLatitude");
         if (mapLatitude == "") {
             mapLatitude = 54.8;
         }
-        var mapLongitude = getCookie("mapLongitude");
+        var mapLongitude = $scope.CookieService.getCookie("mapLongitude");
         if (mapLongitude == "") {
             mapLongitude = -1.8;
         }
-        var mapZoom = getCookie("mapZoom");
+        var mapZoom = $scope.CookieService.getCookie("mapZoom");
         if (mapZoom == "") {
             mapZoom = 6;
         }
@@ -71,29 +72,24 @@
             map,
             'zoom_changed',
             function () {
-                document.cookie = "mapZoom = " + map.getZoom();
+                var cookieConsent = $scope.CookieService.getCookie("cookieConsent");
+                if (cookieConsent != "false") {
+                    document.cookie = "mapZoom = " + map.getZoom();
+                }
             }
         );
         google.maps.event.addListener(
             map,
             'center_changed',
             function () {
-                var mapCenter = map.getCenter();
-                document.cookie = "mapLatitude = " + mapCenter.lat();
-                document.cookie = "mapLongitude = " + mapCenter.lng();
+                var cookieConsent = $scope.CookieService.getCookie("cookieConsent");
+                if (cookieConsent != "false") {
+                    var mapCenter = map.getCenter();
+                    document.cookie = "mapLatitude = " + mapCenter.lat();
+                    document.cookie = "mapLongitude = " + mapCenter.lng();
+                }
             }
         );
-    }
-
-    function getCookie(cname) {
-        var name = cname + "=";
-        var ca = document.cookie.split(';');
-        for (var i = 0; i < ca.length; i++) {
-            var c = ca[i];
-            while (c.charAt(0) == ' ') c = c.substring(1);
-            if (c.indexOf(name) != -1) return c.substring(name.length, c.length);
-        }
-        return "";
     }
 
     var countries = [

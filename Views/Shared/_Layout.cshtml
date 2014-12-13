@@ -35,10 +35,10 @@
         </footer>
     </div>
     @{
-        var cookieConsent = Request.Cookies["cookieConsent"];
-        var cookieFooterVisibilityClass = (cookieConsent != null) ? "hidden" : "";
+        //var cookieConsent = Request.Cookies["cookieConsent"];
+        //var cookieFooterVisibilityClass = (cookieConsent != null) ? "hidden" : "";
     }
-    <div id="cookieFooter" ng-controller="CookiesCtrl" class="{{cookieConsentHidden ? '' : 'shown'}}">
+    <div id="cookieFooter" ng-controller="CookieConsentCtrl" class="{{cookieConsentHidden ? '' : 'shown'}}">
         <accordion close-others="oneAtATime">
             <accordion-group heading="Cookie policy...">
                 <div id="cookieConsentDetails">
