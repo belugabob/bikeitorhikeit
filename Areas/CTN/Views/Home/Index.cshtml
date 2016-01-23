@@ -1,0 +1,129 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div id="ctcApp">
+    <div class="row"><br/></div>
+    <div ng-controller="CtcTabsCtrl">
+        <tabset>
+            <tab heading="Maps" select="initMap()">
+                <div class="mapPane">
+                    <div id="map-canvas"></div>
+                    <div id="panel">
+                        Network length - <span id="networkDistance"></span> km, as the crow flies
+                    </div>
+                </div>
+            </tab>
+            <tab heading="What's it all about?">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>
+                            Welcome to the County Town Network (CTN)
+                        </h2>
+                        <p class="lead">What is the CTN?</p>
+                        <p>In a nutshell, the aim of the CTN is to provide a the starting point for bike rides that will, hopefully, inspire people to get out on their bikes and explore a bit more of the countryside</p>
+                        <p>The spread out nature of the county towns means that most people will leave fairly close to the network, and should be able to complete some part of it.</p>
+                        <ul>
+                            <li>I've done my best to identify the county towns correctly, but I'll admit that I may have made a few mistakes (Especially with the various splinter factions of Yorkshire)</li>
+                            <li>
+                                I've placed the marker point of each town at the main (as far as I can tell) railway station
+                                <ul>
+                                    <li>You may be arriving or departing by train, so it's a good reference point.</li>
+                                    <li>When entering a town, there are usually signs to the railway station, and the logo is really easy to spot from a distance.</li>
+                                    <li>They make easily identifiable subject for those "See, I made it!" photos - create your own Flickr page so that people can be impressing by your county town bagging prowess.</li>
+                                    <li>Newport , on the Isle of Wight (yes, that's a county) doesn't have a railway station, so I've used the council offices for this one.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <p>
+                            <span class="lead">The rules</span><br />
+                            <sub>(Not in a <a href="http://www.velominati.com/the-rules/" target="_blank">Velominati <span class="glyphicon glyphicon-new-window"></span></a> way, I hasten to add)</sub>
+                        </p>
+                        <ul>
+                            <li>This is not a race</li>
+                            <li>There is no obligation for you to circumnavigate the whole network or, for that matter, do it all in one go</li>
+                            <li>You can take as long as you like , and do as many towns as you like in a single day</li>
+                            <li>Although you can travel to your start point and from your end point by train, try not to start at a county town (or you haven't really ridden there, have you?)</li>
+                            <li>You don't have to log the ride (on Strava or Garmin Connect etc), but it might be a good source of reference for others</li>
+                            <li>The are no official routes, so you can go by roads, cycle paths or bridleways, as is appropriate for your bike/mood/ability at the time</li>
+                        </ul>
+                    </div>
+                </div>
+            </tab>
+            <tab heading="What's new?">
+                <p>
+                    <b>Jan 1st 2015</b><br />
+                    Finally gave in to the nagging realisation that the acronym 'CTC' is far too confusing, and changed to 'CTN' (County Town Network).
+                    I decided to do this sooner, rather than later, before people get into the habit of using the original term. (Assuming that the idea takes off)
+                </p>
+                <p>
+                    <b>Dec 13th 2014</b><br />
+                    Added Scottish towns, complied with EU cookie rules (yawn) and added a forum.
+                </p>
+                <p>
+                    <b>Dec 2nd 2014</b><br />
+                    Added Welsh towns, showing 'cross-border' links in a different colour.
+                </p>
+                <p>
+                <b>Nov 23rd 2014</b><br/>
+                    Added a blog.
+                </p>
+                <p>
+                    <b>Nov 21st 2014</b><br />
+                    Everything, really, as I've only just created this site.
+                </p>
+            </tab>
+            <tab heading="What's next?">
+                <p class="lead">Future plans</p>
+                <p>Things that I envisage adding to this site - in no particular order...</p>
+                <ul>
+                    <li>Extend the network to <s>Wales</s>, <s>Scotland</s> and Northern Ireland (Maybe Ireland too)</li>
+                    <li>Allow experimental routes to be built up, to aid with juding distances for partial attempts</li>
+                    <li>Storing information about accommodation and eating places</li>
+                    <li>Add a <s>blog</s> and a <s>forum</s>, so that your adventures can be shared with others</li>
+                </ul>
+            </tab>
+        </tabset>
+    </div>
+</div>
+
+@section styles{
+<style>
+    #map-canvas {
+        height: 800px;
+        margin: 0px;
+        padding: 0px;
+    }
+    .angular-google-map-container { height: 400px; }
+
+    .tab-content {
+        border-left: 1px solid #ddd;
+        border-right: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
+        padding: 10px;
+    }
+    .mapPane{
+        padding: 10px;
+    }
+    .nav-tabs {
+        margin-bottom: 0;
+    }
+    .mapStats {
+        border: solid 1px #ddd;
+        float: right;
+        margin-left: 10px;
+        width: 400px;
+    }
+
+    /*div.tab-content > .active {
+        background-color: #eee;
+    }*/
+</style>
+}
+
+@section scripts{
+    @*<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry"></script>*@
+    <script src="https://maps.googleapis.com/maps/api/js?KEY=AIzaSyB2K_J99IMyydzFZLd9YMlI9oEuIMGvCw8&libraries=geometry"></script>
+    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/angularControllers")
+}
