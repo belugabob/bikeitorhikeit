@@ -11,7 +11,7 @@ namespace belugabrain.bikeitorhikeit.Areas.CTC.Controllers
         // GET: CTC/Home
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("Index", "Home", new { area = "CTN" });
         }
     }
 }

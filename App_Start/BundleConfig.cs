@@ -34,6 +34,12 @@ namespace belugabrain.bikeitorhikeit
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/SlateCss").Include(
+                      "~/Content/Slate/main.css"));
+
+            bundles.Add(new StyleBundle("~/Content/SuperheroCss").Include(
+                      "~/Content/SuperHero/main.css"));
         }
     }
 }

@@ -20,6 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -168,6 +169,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\CTN\Controllers\HomeController.cs" />
+    <Compile Include="Areas\CTN\CTNAreaRegistration.cs" />
     <Compile Include="Areas\CTC\Controllers\HomeController.cs" />
     <Compile Include="Areas\CTC\CTCAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -188,12 +191,17 @@
       <DependentUpon>aspnet-bikeitorhikeit-20141115050906.mdf</DependentUpon>
     </Content>
     <Content Include="Content\bioblogbanner.jpg" />
+    <Content Include="Content\bioblogbanner_lg.jpg" />
+    <Content Include="Content\bioblogbanner_med.jpg" />
+    <Content Include="Content\bioblogbanner_sm.jpg" />
+    <Content Include="Content\bioblogbanner_xs.jpg" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Hello.html" />
     <Content Include="Index.html" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
@@ -242,6 +250,9 @@
     <Content Include="Scripts\angular-aria.min.js.map" />
     <Content Include="Scripts\angular-animate.min.js.map" />
     <Content Include="Scripts\angular.min.js.map" />
+    <Content Include="Areas\CTN\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\CTN\Views\Home\Index.cshtml" />
+    <Content Include="Areas\CTN\Views\web.config" />
     <None Include="Properties\PublishProfiles\LocalFileDump.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-dj.js" />
@@ -1063,6 +1074,8 @@
   <ItemGroup>
     <Folder Include="Areas\CTC\Models\" />
     <Folder Include="Areas\CTC\Views\Shared\" />
+    <Folder Include="Areas\CTN\Models\" />
+    <Folder Include="Areas\CTN\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -1099,6 +1112,9 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <PropertyGroup>
+    <PreBuildEvent>XCOPY $(SolutionDir)Less\wwwroot\css\*.css $(ProjectDir)Content\*.* /F /S /Y</PreBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

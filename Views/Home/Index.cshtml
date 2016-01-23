@@ -8,9 +8,48 @@
 <p class="lead">Adventures powered by your legs and your imagination.</p>
 
 <div class="row">
-    <div class="col-md-4">
-        <h2>County Town Challenge</h2>
-        <p>You are challenged to visit as many county towns as possible, by bicycle.</p>
-        <p>@Html.ActionLink("Take the challenge...", "Index", "Home", new { area = "CTC", @class="btn btn-default" }, null)</p>
+    <div class="col-md-8">
+        <h2>County Town Network</h2>
+        <p>Looking for places to visit on your bicycle? - why not visit some (or all) of our county towns.</p>
+        <p>@Html.ActionLink("Plan your trips...", "Index", "Home", new { area = "CTN", @class="btn btn-default" }, null)</p>
     </div>
 </div>
+<div id="map"></div>
+
+@section scripts
+{
+<script>
+
+// This example creates a 2-pixel-wide red polyline showing the path of William
+// Kingsford Smith's first trans-Pacific flight between Oakland, CA, and
+// Brisbane, Australia.
+
+function initMap() {
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 6,
+    center: {lat: 0, lng: -180},
+    mapTypeId: google.maps.MapTypeId.TERRAIN
+  });
+
+  var flightPlanCoordinates = [
+    {lat: 37.772, lng: -122.214},
+    {lat: 21.291, lng: -157.821},
+    {lat: -18.142, lng: 178.431},
+    {lat: -27.467, lng: 153.027}
+  ];
+  var flightPath = new google.maps.Polyline({
+    path: flightPlanCoordinates,
+    geodesic: true,
+    strokeColor: '#FF0000',
+    strokeOpacity: 1.0,
+    strokeWeight: 2
+  });
+
+  flightPath.setMap(map);
+}
+
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry&callback=initMap"></script>
+  
+}

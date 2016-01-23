@@ -72,22 +72,16 @@
             map,
             'zoom_changed',
             function () {
-                var cookieConsent = $scope.CookieService.getCookie("cookieConsent");
-                if (cookieConsent != "false") {
-                    document.cookie = "mapZoom = " + map.getZoom();
-                }
+                $scope.CookieService.setCookie("mapZoom", map.getZoom());
             }
         );
         google.maps.event.addListener(
             map,
-            'center_changed',
+            'idle',
             function () {
-                var cookieConsent = $scope.CookieService.getCookie("cookieConsent");
-                if (cookieConsent != "false") {
-                    var mapCenter = map.getCenter();
-                    document.cookie = "mapLatitude = " + mapCenter.lat();
-                    document.cookie = "mapLongitude = " + mapCenter.lng();
-                }
+                var mapCenter = map.getCenter();
+                $scope.CookieService.setCookie("mapLatitude", mapCenter.lat());
+                $scope.CookieService.setCookie("mapLongitude", mapCenter.lng());
             }
         );
     }

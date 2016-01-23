@@ -6,8 +6,22 @@
     <title>@ViewBag.Title - belugabrain</title>
     @RenderSection("styles", required: false)
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
 
+    @*@Styles.Render("~/Content/SlateCss")*@
+
+@*    @Styles.Render("~/Content/SuperheroCss")*@
+    @Scripts.Render("~/bundles/modernizr")
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        #map {
+            width: 100%; height: 400px;
+        }
+    </style>
 </head>
 <body ng-app="belugabrain.ctc">
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -22,7 +36,9 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("CTC", "Index", "Home", new { area = "CTC" }, null)</li>
+                    <li>@Html.ActionLink("CTN", "Index", "Home", new { area = "CTN" }, null)</li>
+                    <li><a href="https://bikeitorhikeit.net/blog" target="_blank">Blog</a></li>
+                    <li><a href="https://bikeitorhikeit.net/forum" target="_blank">Forum</a></li>
                 </ul>
             </div>
         </div>
@@ -34,10 +50,6 @@
             <p>&copy; @DateTime.Now.Year - belugabrain</p>
         </footer>
     </div>
-    @{
-        //var cookieConsent = Request.Cookies["cookieConsent"];
-        //var cookieFooterVisibilityClass = (cookieConsent != null) ? "hidden" : "";
-    }
     <div id="cookieFooter" ng-controller="CookieConsentCtrl" class="{{cookieConsentHidden ? '' : 'shown'}}">
         <accordion close-others="oneAtATime">
             <accordion-group heading="Cookie policy...">
@@ -49,7 +61,7 @@
                     <div>
                         <p>This site uses cookies to remember which part of the site you were looking at and which options you selected, so that when you return, things will be pretty much as you left them.</p>
                         <p>
-                            For example, when looking at the maps for the County Town Challenge, cookies are used to remember the part of the map that you were looking at and the zoom level in force at the time.
+                            For example, when looking at the maps for the County Town Network, cookies are used to remember the part of the map that you were looking at and the zoom level in force at the time.
                             Without cookies to remember this, you will have to zoom and scroll every time you come back to the map.
                         </p>
                         <p>We totally understand if you don't like using cookies, so feel free to click on the 'reject' button.</p>

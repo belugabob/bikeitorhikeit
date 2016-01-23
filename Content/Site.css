@@ -22,13 +22,35 @@ select,
 textarea {
     max-width: 280px;
 }
-
 .banner{
-    background-image: url(bioblogbanner.jpg);
-    background-position: top left;
+    background-position: center;
     background-repeat: no-repeat;
-    width: 1000px;
-    height: 288px;
+    width: 100%;
+    padding-bottom: 28.8%;
+}
+
+@media (max-width: 400px) {
+    .banner{
+        background-image: url(bioblogbanner_xs.jpg);
+    }
+}
+
+@media (min-width: 401px) {
+    .banner{
+        background-image: url(bioblogbanner_sm.jpg);
+    }
+}
+
+@media (min-width: 768px) {
+    .banner{
+        background-image: url(bioblogbanner_med.jpg);
+    }
+}
+
+@media (min-width: 992px) {
+    .banner{
+        background-image: url(bioblogbanner_lg.jpg);
+    }
 }
 
 #cookieFooter {
